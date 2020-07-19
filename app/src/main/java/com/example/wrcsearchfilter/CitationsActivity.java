@@ -2,12 +2,19 @@ package com.example.wrcsearchfilter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.wrcsearchfilter.data.model.Citation;
 import com.example.wrcsearchfilter.ressource.api.retrofit.JsonPlaceHolderApiI;
+
+import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,7 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CitationsActivity extends AppCompatActivity {
-
+    private Citation citation;
     private TextView textViewResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +35,7 @@ public class CitationsActivity extends AppCompatActivity {
         Log.i("recherche",recherche);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://f17cda351be9.ngrok.io/")
+                .baseUrl("https://0a529e218b86.ngrok.io")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -44,29 +51,39 @@ public class CitationsActivity extends AppCompatActivity {
                     return;
                 }
                 Log.i("body",response.toString());
-                Citation citation = response.body();
+                citation = response.body();
                 Log.i("citation", citation.toString());
 
-                TextView author = findViewById(R.id.author);
+                TextView author = findViewById(R.id.book_author);
                 author.setText(citation.getBook().getAuteur().getPrenom()+ ' '+citation.getBook().getAuteur().getNom());
 
-                TextView anneeParutionLivre = findViewById(R.id.annee_parution);
-                anneeParutionLivre.setText(citation.getBook().getAnneeParution());
-                author.setText(citation.getBook().getAuteur().getPrenom()+ ' '+citation.getBook().getAuteur().getNom());
+                TextView title = findViewById(R.id.book_title);
+                title.setText(citation.getBook().getTitre());
 
-                TextView citationTv = findViewById(R.id.textCitation);
+                TextView anneeParutionLivre = findViewById(R.id.book_annee_parution);
+                anneeParutionLivre.setText(String.valueOf(citation.getBook().getAnneeParution()));
+
+                TextView citationTv = findViewById(R.id.text_citation);
                 citationTv.setText(citation.getCitation());
-                anneeParutionLivre.setText(citation.getBook().getAnneeParution());
 
-                for (Citation citationConnexe : citation.getCitationsConnexes()) {
+                ImageView bookImg = findViewById(R.id.book_img);
+                Glide.with(bookImg).load(citation.getBook().getImageUrl()).into(bookImg);
 
-                    String content = ""
-                            + "ID: " + citationConnexe.getId() + "\n"
-                            + "Livre: " + citationConnexe.getBook() + "\n"
-                            + "Contenu: " + citationConnexe.getCitation() + "\n";
+                TextView tagsTv = findViewById(R.id.citation_tags);
+                tagsTv.setText(tagsTv.getText()+citation.getTags());
 
-                    textViewResult.append(content);
+                if(citation.getCitationsConnexes() != null){
+                    for (Citation citationConnexe : citation.getCitationsConnexes()) {
+
+                        String content = ""
+                                + "Livre: " + citationConnexe.getBook().getTitre() + "\n"
+                                + "Citation: " + citationConnexe.getCitation() + "\n"
+                                + "Catégorie(s) similaire(s): " + citationConnexe.getTags() + "\n";
+
+                        textViewResult.append(content);
+                    }
                 }
+
 
             }
 
@@ -78,5 +95,11 @@ public class CitationsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void showOtherBooks(View v){
+        Intent intent = new Intent(this, LivreActivity.class);
+        intent.putExtra("books", (Parcelable) citation.getBook().getAuteur().getBooks());
+        this.startActivity(intent);
     }
 }

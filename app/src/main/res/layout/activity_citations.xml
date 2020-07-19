@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/book_img"
         android:layout_width="85dp"
         android:layout_height="101dp"
         android:layout_marginStart="16dp"
@@ -18,52 +18,54 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/Similar_Citation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/Similar"
-        app:layout_constraintStart_toStartOf="@+id/annee_parution"
-        app:layout_constraintTop_toBottomOf="@+id/annee_parution" />
-
-    <TextView
-        android:id="@+id/author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="@string/Book_Author"
-        app:layout_constraintStart_toStartOf="@+id/annee_parution"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/book_title"
+        android:id="@+id/citation_tags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/Book_title"
+        android:layout_marginTop="16dp"
+        android:text="@string/Similar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Similar_Citation" />
+        app:layout_constraintTop_toBottomOf="@+id/text_citation" />
 
     <TextView
-        android:id="@+id/annee_parution"
+        android:id="@+id/book_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="@string/Book_Author"
+        app:layout_constraintStart_toStartOf="@+id/book_annee_parution"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_citation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Book_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/book_annee_parution" />
+
+    <TextView
+        android:id="@+id/book_annee_parution"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
         android:text="@string/years_parrution"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/author" />
+        app:layout_constraintStart_toEndOf="@+id/book_img"
+        app:layout_constraintTop_toBottomOf="@+id/book_author" />
 
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/xdc"
-        android:layout_width="414dp"
-        android:layout_height="426dp"
+        android:layout_width="395dp"
+        android:layout_height="461dp"
         android:layout_below="@+id/Title_Api"
-        android:layout_marginTop="27dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/book_title">
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
 
         <TextView
@@ -74,4 +76,40 @@
 
 
     </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/book_img"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Citations avec le même sens:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/citation_author_books" />
+
+    <TextView
+        android:id="@+id/citation_author_books"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="showOtherBooks"
+        android:text="@string/autres_livres_du_m_me_auteur"
+        android:textColor="@color/Blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/citation_tags" />
 </androidx.constraintlayout.widget.ConstraintLayout>

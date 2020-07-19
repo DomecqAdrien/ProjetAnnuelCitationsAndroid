@@ -5,15 +5,17 @@ public class Book {
     private int id;
     private String titre;
     private String imageUrl;
-    private Auteur auteur;
     private int anneeParution;
+    private Auteur auteur;
 
 
-    public Book(int id, int years, String titre, Auteur auteur) {
+
+    public Book(int id, int years, String titre,int anneeParution, Auteur auteur) {
         this.id = id;
         this.anneeParution = years;
         this.titre = titre;
         this.auteur = auteur;
+        this.anneeParution =  anneeParution;
     }
 
     public int getId() {
@@ -32,18 +34,19 @@ public class Book {
         return auteur;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", titre='" + titre + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", auteur=" + auteur +
                 ", anneeParution=" + anneeParution +
+                ", auteur=" + auteur +
                 '}';
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
 }

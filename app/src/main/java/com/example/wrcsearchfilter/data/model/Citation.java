@@ -1,5 +1,4 @@
 package com.example.wrcsearchfilter.data.model;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -9,7 +8,7 @@ public class Citation {
     private Book book;
     private String citation;
     private List<Tag> tags;
-    private List<Citation> CitationsConnexes;
+    private List<Citation> citationsConnexes;
 
     @Override
     public String toString() {
@@ -18,7 +17,7 @@ public class Citation {
                 ", book=" + book +
                 ", citation='" + citation + '\'' +
                 ", tags=" + tags +
-                ", CitationsConnexes=" + CitationsConnexes +
+                ", citationsConnexes=" + citationsConnexes +
                 '}';
     }
 
@@ -42,10 +41,17 @@ public class Citation {
     }
 
     public List<Citation> getCitationsConnexes() {
-        return CitationsConnexes;
+        return citationsConnexes;
     }
 
-    public List<Tag> getTags() {
-        return tags;
+    public String getTags() {
+        String tagsToString = "";
+        for(int i = 0; i < tags.size(); i++){
+            tagsToString += tags.get(i).getTag();
+            if(i != tags.size()-1){
+                tagsToString += ", ";
+            }
+        }
+        return tagsToString;
     }
 }

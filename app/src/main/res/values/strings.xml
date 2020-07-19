@@ -49,6 +49,7 @@
     <string name="top_billest_value">Top Billed Cast</string>
     <string name="Book_title">Harry potter à l\'ecole des sorciers</string>
     <string name="Book_Author">JK Rowling</string>
-    <string name="Similar">Arkandia</string>
+    <string name="Similar">Catégories:  </string>
     <string name="years_parrution">2004</string>
+    <string name="autres_livres_du_m_me_auteur"><u>Autres livres du même auteur</u></string>
 </resources>
