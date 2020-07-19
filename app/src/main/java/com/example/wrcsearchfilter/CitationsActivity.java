@@ -78,7 +78,7 @@ public class CitationsActivity extends AppCompatActivity {
                         String content = ""
                                 + "Livre: " + citationConnexe.getBook().getTitre() + "\n"
                                 + "Citation: " + citationConnexe.getCitation() + "\n"
-                                + "Catégorie(s) similaire(s): " + citationConnexe.getTags() + "\n";
+                                + "Catégorie(s) similaire(s): " + citationConnexe.getTags() + "\n\n";
 
                         textViewResult.append(content);
                     }
