@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "402399692011",
+    "firebase_url": "https://wrcsearchfilter.firebaseio.com",
+    "project_id": "wrcsearchfilter",
+    "storage_bucket": "wrcsearchfilter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402399692011:android:1d77a607057ab9ded92aae",
+        "android_client_info": {
+          "package_name": "com.example.wrcsearchfilter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402399692011-aka8bpdck817rjf7cgs9b60j429f1hpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVSjHdxtzFGvurQnW5sNSyEujSPs5c19c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402399692011-aka8bpdck817rjf7cgs9b60j429f1hpm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

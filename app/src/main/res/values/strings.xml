@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Citation</string>
+    <string name="title_activityMain">Main Activity</string>
+    <string name="title_activity_Firebase">Firebase</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="Last_Citation">Dernier livre Consulté</string>
+    <string name="search_here">rechercher parmi vos favoris</string>
+    <string name="vos_favoris">Vos Citations favoris</string>
+
+
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="year">2014</string>
+    <string name="Film_Description">Dans un futur proche, la Terre est de moins en moins accueillante pour l\'humanité qui connaît une grave crise alimentaire. Le film raconte les aventures d\'un groupe d\'explorateurs qui utilise une faille récemment découverte dans l\'espace-temps afin de repousser les limites humaines et partir à la conquête des distances astronomiques dans un voyage interstellaire</string>
+    <string name="add_to_watchlist">+ ADD TO WATCHLIST</string>
+    <string name="Metascore_Label">Metascore</string>
+    <string name="Critic_Reviews_Numbers">46 critics reviews</string>
+    <string name="rate_this">RATE THIS</string>
+    <string name="pg">PG- 13</string>
+    <string name="Duration">2h49</string>
+    <string name="type_I">Adventure</string>
+    <string name="type_II">Drama</string>
+    <string name="type_III">Scy Fy</string>
+    <string name="Title">Interstellar</string>
+    <string name="app_name_Logo">IMDb</string>
+    <string name="Metascore_value_nb">74</string>
+    <string name="actor_name">Actor Name</string>
+    <string name="actor_fonction">rôle</string>
+    <string name="Director_label">Director</string>
+    <string name="Director">NOLAN Christopher</string>
+    <string name="Writters_Title">Writters</string>
+    <string name="writters_list"><![CDATA[Jonathan & Christopher Nolan]]></string>
+    <string name="top_billest_value">Top Billed Cast</string>
+    <string name="Book_title">Harry potter à l\'ecole des sorciers</string>
+    <string name="Book_Author">JK Rowling</string>
+    <string name="Similar">Arkandia</string>
+    <string name="years_parrution">2004</string>
+</resources>
