@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.wrcsearchfilter.data.model.Author;
-import com.example.wrcsearchfilter.data.model.Citations;
+import com.example.wrcsearchfilter.data.model.Auteur;
 import com.example.wrcsearchfilter.ressource.api.retrofit.JsonPlaceHolderApiI;
 
 import java.util.List;
@@ -33,26 +32,26 @@ public class AuthorActivity extends AppCompatActivity {
                 .build();
 
         JsonPlaceHolderApiI jsonPlaceHolderApiI = retrofit.create(JsonPlaceHolderApiI.class);
-        Call<List<Author>> call = jsonPlaceHolderApiI.getAuthors();
+        Call<List<Auteur>> call = jsonPlaceHolderApiI.getAuthors();
 
-        call.enqueue(new Callback<List<Author>>() {
+        call.enqueue(new Callback<List<Auteur>>() {
             @Override
-            public void onResponse(Call<List<Author>> call, Response<List<Author>> response) {
+            public void onResponse(Call<List<Auteur>> call, Response<List<Auteur>> response) {
                 if(!response.isSuccessful()){
 
                     textViewResult.setText("Code: " + response.code());
                     return;
                 }
 
-                List<Author> authors = response.body();
+                List<Auteur> authors = response.body();
 
-                for (Author author :   authors) {
+                for (Auteur author :   authors) {
 
                     String content = ""
                             + "ID: " + author.getId() + "\n"
-                            + "Name: " + author.getName() + "\n"
-                            + "SurName: " + author.getSurname() + "\n"
-                            + "Livre: " + author.getLivre() + "\n";
+                            + "Name: " + author.getNom() + "\n"
+                            + "SurName: " + author.getPrenom() + "\n";
+                            //+ "Livre: " + author.getBook() + "\n";
 
                     textViewResult.append(content);
                 }
@@ -60,7 +59,7 @@ public class AuthorActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Author>> call, Throwable throwable) {
+            public void onFailure(Call<List<Auteur>> call, Throwable throwable) {
                 textViewResult.setText(throwable.getMessage());
 
             }

@@ -12,7 +12,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
-    <string name="Last_Citation">Dernier livre Consulté</string>
+    <string name="Last_Citation">Dernier book Consulté</string>
     <string name="search_here">rechercher parmi vos favoris</string>
     <string name="vos_favoris">Vos Citations favoris</string>
 

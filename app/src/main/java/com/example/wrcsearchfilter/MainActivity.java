@@ -3,17 +3,23 @@ package com.example.wrcsearchfilter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import java.util.ArrayList;
 import java.util.List;
 import static androidx.appcompat.R.id.search_src_text;
+import static androidx.appcompat.R.id.text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView listshowrcy;
     List<Item> productlist = new ArrayList<>();
     MainActivityAdapter adapter;
+    TextView textCitation;
+    Button buttonRechercher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
         listshowrcy.setLayoutManager(linearLayoutManager);
         adapter = new MainActivityAdapter(productlist,MainActivity.this);
         listshowrcy.setAdapter(adapter);
+        textCitation = findViewById(R.id.textCitation);
+        buttonRechercher = findViewById(R.id.buttonSearch);
+
+
+
+    }
+
+    public void searchCitation(View v){
+        Intent intent = new Intent(this, CitationsActivity.class);
+        intent.putExtra("recherche",textCitation.getText().toString());
+        this.startActivity(intent);
     }
 
     @Override

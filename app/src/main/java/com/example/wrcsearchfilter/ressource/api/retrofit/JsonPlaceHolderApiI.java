@@ -1,23 +1,24 @@
 package com.example.wrcsearchfilter.ressource.api.retrofit;
 
-import com.example.wrcsearchfilter.data.model.Author;
-import com.example.wrcsearchfilter.data.model.Citations;
-import com.example.wrcsearchfilter.data.model.Livre;
-import com.example.wrcsearchfilter.ressource.api.Post;
+import com.example.wrcsearchfilter.data.model.Auteur;
+import com.example.wrcsearchfilter.data.model.Book;
+import com.example.wrcsearchfilter.data.model.Citation;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface JsonPlaceHolderApiI {
 
     @GET("Authors")
-    Call<List<Author>> getAuthors();
+    Call<List<Auteur>> getAuthors();
 
-    @GET("CitationByText")
-    Call<List<Citations>> getCitations();
+    @POST("/citation/getCitationByText")
+    Call<Citation> getCitation(@Body String recherche);
 
     @GET("Livres")
-    Call<List<Livre>> getLivres();
+    Call<List<Book>> getLivres();
 }

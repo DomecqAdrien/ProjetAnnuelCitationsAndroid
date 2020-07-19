@@ -23,20 +23,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="@string/Similar"
-        app:layout_constraintStart_toStartOf="@+id/parrution"
-        app:layout_constraintTop_toBottomOf="@+id/parrution" />
+        app:layout_constraintStart_toStartOf="@+id/annee_parution"
+        app:layout_constraintTop_toBottomOf="@+id/annee_parution" />
 
     <TextView
-        android:id="@+id/Author"
+        android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="@string/Book_Author"
-        app:layout_constraintStart_toStartOf="@+id/parrution"
+        app:layout_constraintStart_toStartOf="@+id/annee_parution"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Book_Title"
+        android:id="@+id/book_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -46,14 +46,14 @@
         app:layout_constraintTop_toBottomOf="@+id/Similar_Citation" />
 
     <TextView
-        android:id="@+id/parrution"
+        android:id="@+id/annee_parution"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
         android:text="@string/years_parrution"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/Author" />
+        app:layout_constraintTop_toBottomOf="@+id/author" />
 
 
     <androidx.core.widget.NestedScrollView
@@ -63,7 +63,7 @@
         android:layout_below="@+id/Title_Api"
         android:layout_marginTop="27dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Book_Title">
+        app:layout_constraintTop_toBottomOf="@+id/book_title">
 
 
         <TextView

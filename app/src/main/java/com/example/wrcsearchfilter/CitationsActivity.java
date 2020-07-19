@@ -3,13 +3,11 @@ package com.example.wrcsearchfilter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
-import com.example.wrcsearchfilter.data.model.Citations;
-import com.example.wrcsearchfilter.data.model.Livre;
+import com.example.wrcsearchfilter.data.model.Citation;
 import com.example.wrcsearchfilter.ressource.api.retrofit.JsonPlaceHolderApiI;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,33 +23,47 @@ public class CitationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_citations);
         textViewResult = findViewById(R.id.text_view_resultsx);
+        String recherche = this.getIntent().getStringExtra("recherche");
 
+        Log.i("recherche",recherche);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8081")
+                .baseUrl("https://f17cda351be9.ngrok.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         JsonPlaceHolderApiI jsonPlaceHolderApiI = retrofit.create(JsonPlaceHolderApiI.class);
-        Call<List<Citations>> call = jsonPlaceHolderApiI.getCitations();
+        Call<Citation> call = jsonPlaceHolderApiI.getCitation(recherche);
 
-        call.enqueue(new Callback<List<Citations>>() {
+        call.enqueue(new Callback<Citation>() {
             @Override
-            public void onResponse(Call<List<Citations>> call, Response<List<Citations>> response) {
+            public void onResponse(Call<Citation> call, Response<Citation> response) {
                 if(!response.isSuccessful()){
-
+                    Log.i("response","fail");
                     textViewResult.setText("Code: " + response.code());
                     return;
                 }
+                Log.i("body",response.toString());
+                Citation citation = response.body();
+                Log.i("citation", citation.toString());
 
-                List<Citations> citations = response.body();
+                TextView author = findViewById(R.id.author);
+                author.setText(citation.getBook().getAuteur().getPrenom()+ ' '+citation.getBook().getAuteur().getNom());
 
-                for (Citations citation : citations) {
+                TextView anneeParutionLivre = findViewById(R.id.annee_parution);
+                anneeParutionLivre.setText(citation.getBook().getAnneeParution());
+                author.setText(citation.getBook().getAuteur().getPrenom()+ ' '+citation.getBook().getAuteur().getNom());
+
+                TextView citationTv = findViewById(R.id.textCitation);
+                citationTv.setText(citation.getCitation());
+                anneeParutionLivre.setText(citation.getBook().getAnneeParution());
+
+                for (Citation citationConnexe : citation.getCitationsConnexes()) {
 
                     String content = ""
-                            + "ID: " + citation.getId() + "\n"
-                            + "Livre: " + citation.getLivre() + "\n"
-                            + "Contenu: " + citation.getContenu() + "\n";
+                            + "ID: " + citationConnexe.getId() + "\n"
+                            + "Livre: " + citationConnexe.getBook() + "\n"
+                            + "Contenu: " + citationConnexe.getCitation() + "\n";
 
                     textViewResult.append(content);
                 }
@@ -59,8 +71,9 @@ public class CitationsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Citations>> call, Throwable throwable) {
-                textViewResult.setText(throwable.getMessage());
+            public void onFailure(Call<Citation> call, Throwable throwable) {
+                Log.i("error:",throwable.getMessage());
+                textViewResult.setText("Aucune citation trouvée.");
 
             }
         });

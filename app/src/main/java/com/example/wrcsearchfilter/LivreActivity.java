@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.wrcsearchfilter.data.model.Livre;
+import com.example.wrcsearchfilter.data.model.Book;
 import com.example.wrcsearchfilter.ressource.api.retrofit.JsonPlaceHolderApiI;
 import java.util.List;
 
@@ -24,32 +24,33 @@ public class LivreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_livre);
         textViewResult = findViewById(R.id.text_view_result);
 
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8081")
+                .baseUrl("http://127.0.0.1:8081")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         JsonPlaceHolderApiI jsonPlaceHolderApiI = retrofit.create(JsonPlaceHolderApiI.class);
-        Call<List<Livre>> call = jsonPlaceHolderApiI.getLivres();
+        Call<List<Book>> call = jsonPlaceHolderApiI.getLivres();
 
-        call.enqueue(new Callback<List<Livre>>() {
+        call.enqueue(new Callback<List<Book>>() {
             @Override
-            public void onResponse(Call<List<Livre>> call, Response<List<Livre>> response) {
+            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
                 if(!response.isSuccessful()){
 
                     textViewResult.setText("Code: " + response.code());
                     return;
                 }
 
-                List<Livre> livres = response.body();
+                List<Book> books = response.body();
 
-                for (Livre livre : livres) {
+                for (Book book : books) {
 
                     String content = ""
-                            + "ID: " + livre.getId() + "\n"
-                            + "Title: " + livre.getTitle() + "\n"
-                            + "Année de sortie: " + livre.getYears() + "\n"
-                            + "Auteur: " + livre.getAuthor() + "\n\n";
+                            + "ID: " + book.getId() + "\n"
+                            + "Title: " + book.getTitre() + "\n"
+                            + "Année de sortie: " + book.getAnneeParution() + "\n"
+                            + "Auteur: " + book.getAuteur() + "\n\n";
 
                     textViewResult.append(content);
                 }
@@ -57,7 +58,7 @@ public class LivreActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Livre>> call, Throwable throwable) {
+            public void onFailure(Call<List<Book>> call, Throwable throwable) {
                 textViewResult.setText(throwable.getMessage());
 
             }
