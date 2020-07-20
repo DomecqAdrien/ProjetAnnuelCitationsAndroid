@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import com.example.wrcsearchfilter.data.LoginRepository;
-import com.example.wrcsearchfilter.data.Result;
-import com.example.wrcsearchfilter.data.model.LoggedInUser;
+import com.example.wrcsearchfilter.model.LoggedInUser;
 import com.example.wrcsearchfilter.R;
 
 public class LoginViewModel extends ViewModel {
