@@ -1,5 +1,9 @@
 package com.example.wrcsearchfilter.model;
 
+import android.util.Log;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Recherche {
@@ -15,7 +19,11 @@ public class Recherche {
         return citation;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        Log.i("jour", String.valueOf(date.getDay()));
+        Log.i("date",df.format(date));
+        String r = df.format(date);
+        return r;
     }
 }

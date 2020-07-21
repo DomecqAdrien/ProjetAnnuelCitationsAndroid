@@ -1,8 +1,9 @@
 package com.example.wrcsearchfilter.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Auteur {
+public class Auteur implements Serializable {
 
     public int id;
     String nom;

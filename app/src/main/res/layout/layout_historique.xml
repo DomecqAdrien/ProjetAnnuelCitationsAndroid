@@ -28,8 +28,8 @@ app:cardUseCompatPadding="true">
 
         <TextView
             android:id="@+id/date"
-            android:layout_width="74dp"
-            android:layout_height="19dp"
+            android:layout_width="234dp"
+            android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="16dp"
             android:text="Date1"

@@ -11,30 +11,21 @@ public class MainPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+    }
 
-        final Button HistoriqueButton = findViewById(R.id.Historique);
-        final Button FavorisButton = findViewById(R.id.Favoris);
-        final Button RechercheButton = findViewById(R.id.Recherhe);
+    public void showSearch(View v){
+        Intent i = new Intent(MainPageActivity.this, CitationSearchActivity.class);
+        startActivity(i);
+    }
 
-        FavorisButton.setOnClickListener(v -> {
+    public void showHistorique(View v){
+        Intent i = new Intent(MainPageActivity.this, CitationHistoriqueActivity.class);
+        startActivity(i);
+    }
 
-            Intent i = new Intent(MainPageActivity.this, CitationFavorisActivity.class);
-            startActivity(i);
-
-        });
-
-        HistoriqueButton.setOnClickListener(v -> {
-
-            Intent i = new Intent(MainPageActivity.this, CitationHistoriqueActivity.class);
-            startActivity(i);
-
-        });
-
-        RechercheButton.setOnClickListener(v -> {
-            Intent i = new Intent(MainPageActivity.this, CitationSearchActivity.class);
-            startActivity(i);
-
-        });
+    public void showFavoris(View v){
+        Intent i = new Intent(MainPageActivity.this, CitationFavorisActivity.class);
+        startActivity(i);
     }
 
 }

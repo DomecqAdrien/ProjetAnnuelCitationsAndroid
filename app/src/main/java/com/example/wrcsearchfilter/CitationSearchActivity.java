@@ -38,26 +38,17 @@ public class CitationSearchActivity extends AppCompatActivity {
         Log.i("json",obj.toString());
         JSONArray arr = obj.getJSONArray("historique");
         JSONObject newFav = new JSONObject();
+        Date today = new Date();
+        DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
+                DateFormat.SHORT,
+                DateFormat.SHORT);
         Date date = Calendar.getInstance().getTime();
-        DateFormat d = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-        newFav.put("recherche", textCitation.getText().toString()).put("date", d.format(date));
+        DateFormat d = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        newFav.put("recherche", textCitation.getText().toString()).put("date", d.format(today));
         arr.put(newFav);
         JsonManager.writeJSON(this,obj.toString());
         Intent intent = new Intent(this, CitationResultActivity.class);
         intent.putExtra("recherche",textCitation.getText().toString());
         this.startActivity(intent);
     }
-
-    /*private List<Item> filter(List<Item> pl, String Query){
-        Query = Query.toLowerCase();
-        final List<Item> filterModeList = new ArrayList<>();
-        for (Item model:pl)
-        {
-            final String text = model.getName().toLowerCase();
-            if (text.startsWith(Query)){
-                filterModeList.add(model);
-            }
-        }
-        return filterModeList;
-    }*/
 }

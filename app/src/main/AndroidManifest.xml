@@ -17,20 +17,21 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
         <activity android:name=".AuthorBooksActivity"></activity>
+        <activity android:name=".ui.login.HomeActivity"></activity>
         <activity android:name=".CitationResultActivity" />
-        <activity android:name=".MainPageActivity">
+        <activity android:name=".MainPageActivity"/>
+        <activity android:name=".CitationHistoriqueActivity" />
+        <activity android:name=".CitationFavorisActivity" />
+        <activity
+            android:name=".ui.login.InscriptionActivity"
+            android:label="LoginMain" />
+        <activity android:name=".ui.login.ConnexionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CitationHistoriqueActivity" />
-        <activity android:name=".CitationFavorisActivity" />
-        <activity
-            android:name=".ui.login.LoginMainIIActivity"
-            android:label="LoginMain" />
-        <activity android:name=".ui.login.LoginMainActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />

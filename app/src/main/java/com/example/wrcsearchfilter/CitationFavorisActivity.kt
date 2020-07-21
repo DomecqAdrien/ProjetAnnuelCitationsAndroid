@@ -22,7 +22,7 @@ class CitationFavorisActivity : AppCompatActivity() {
 
     private lateinit var historiqueRv: RecyclerView
     private lateinit var historiqueAdapter: RechercheAdapter
-    private val historique: MutableList<Recherche> = ArrayList()
+    private var historique: MutableList<Recherche> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_citation_favoris)
@@ -33,10 +33,12 @@ class CitationFavorisActivity : AppCompatActivity() {
             val arr = obj.getJSONArray("favoris")
             Log.i("array size: ", arr.length().toString())
             for (i in 0 until arr.length()) {
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
+                val dateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss")
                 val dateTime: Date = dateFormat.parse(arr.getJSONObject(i)["date"] as String)
                 historique.add(Recherche(arr.getJSONObject(i)["citation"] as String, dateTime))
             }
+
+            if(historique.size > 0) historique = historique.sortedByDescending { it.date } as MutableList<Recherche>
             historiqueRv = findViewById<View>(R.id.list_item_favoris) as RecyclerView
             historiqueAdapter = RechercheAdapter(this)
             historiqueRv.apply {

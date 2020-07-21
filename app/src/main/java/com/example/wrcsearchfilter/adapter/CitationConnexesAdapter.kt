@@ -21,21 +21,22 @@ class CitationConnexesAdapter(context: Context) : RecyclerView.Adapter<CitationC
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CitationConnexesViewHolder {
-        return CitationConnexesViewHolder(parent.inflate(R.layout.layout_books))
+        return CitationConnexesViewHolder(parent.inflate(R.layout.layout_citations_connexes))
     }
 
     override fun getItemCount() = citations.size
 
     override fun onBindViewHolder(holder: CitationConnexesViewHolder, position: Int) {
-        val recherche = citations[position]
+        val citation = citations[position]
         holder.itemView.setOnClickListener {
             val intent = Intent(context, CitationResultActivity::class.java)
-            intent.putExtra("recherche", recherche.citation)
+            intent.putExtra("recherche", citation.citation)
             context.startActivity(intent)
             //Toast.makeText(context, "click on " + productlist.get(position).getName(), Toast.LENGTH_LONG).show()
         }
-        holder.bindData(recherche)
+        holder.bindData(citation)
     }
+
 }
 
 class CitationConnexesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -45,8 +46,8 @@ class CitationConnexesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemV
 
     fun bindData(citation: Citation) {
         bookTv.text = citation.book.titre
-        citationTv.text = citation.citation
-        categoriesTv.text = citation.tags.toString()
+        citationTv.text = "Citation: "+citation.citation
+        categoriesTv.text = "Catégorie(s) similaire(s) : "+citation.tags.toString()
     }
 }
 

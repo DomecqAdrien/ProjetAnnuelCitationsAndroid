@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.wrcsearchfilter.MainPageActivity;
 import com.example.wrcsearchfilter.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -26,31 +27,35 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class LoginMainActivity  extends AppCompatActivity {
+public class ConnexionActivity extends AppCompatActivity {
 
     EditText emailId,password;
     Button btnSignUp;
+    Button btnSignIn;
     TextView tvSignIn;
     FirebaseAuth mFirebaseAuth;
-    private SignInButton signInButton;
+    //private SignInButton signInButton;
     GoogleSignInClient mGoogleSignInClient;
     private String TAG ="LoginActivity";
     private int RC_SIGN_IN = 1;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_mainii);
+        setContentView(R.layout.activity_application_login);
 
-        signInButton = findViewById(R.id.signInButton);
+        //signInButton = findViewById(R.id.signInButton);
         mFirebaseAuth = FirebaseAuth.getInstance();
-        emailId = findViewById(R.id.editText);
-        password = findViewById(R.id.editText2);
+        mFirebaseAuth.signOut();
+        emailId = findViewById(R.id.field_email);
+        password = findViewById(R.id.field_password);
         tvSignIn = findViewById(R.id.textView);
-        btnSignUp = findViewById(R.id.button);
+        btnSignUp = findViewById(R.id.btn_sign_up);
+
+
 
         // Google Sign In Service
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -60,66 +65,88 @@ public class LoginMainActivity  extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    signIn();
+        //signInButton.setOnClickListener(v -> signIn());
+
+        // INSCRIPTION
+        /*btnSignUp.setOnClickListener(v -> {
+
+            String email = emailId.getText().toString();
+            String pwd = password.getText().toString();
+
+            if(email.isEmpty()){
+                emailId.setError("Please enter email id");
+                emailId.requestFocus();
             }
-        });
+            else if (pwd.isEmpty()){
+                password.setError("Please enter your password");
+                password.requestFocus();
 
+            }
 
+            else if (email.isEmpty() && pwd.isEmpty()){
+                Toast.makeText(ConnexionActivity.this,"Veuillez remplir les champs",Toast.LENGTH_SHORT).show();
 
-        btnSignUp.setOnClickListener(new View.OnClickListener(){
+            }
+            else if (!(email.isEmpty() && pwd.isEmpty())){
 
-            @Override
-            public void onClick(View v) {
-
-                String email = emailId.getText().toString();
-                String pwd = password.getText().toString();
-
-                if(email.isEmpty()){
-                    emailId.setError("Please enter email id");
-                    emailId.requestFocus();
-                }
-                else if (pwd.isEmpty()){
-                    password.setError("Please enter your password");
-                    password.requestFocus();
-
-                }
-
-                else if (email.isEmpty() && pwd.isEmpty()){
-                    Toast.makeText(LoginMainActivity.this,"Veuillez remplir les champs",Toast.LENGTH_SHORT).show();
-
-                }
-                else if (!(email.isEmpty() && pwd.isEmpty())){
-
-                    mFirebaseAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(LoginMainActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()){
-
-                                Toast.makeText(LoginMainActivity.this,"Echec de la connection veuillez essayer de nouveau",Toast.LENGTH_SHORT).show();
-
-                            }else{
-
-                                startActivity(new Intent(LoginMainActivity.this,HomeActivity.class));
-
-                            }
+                mFirebaseAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(ConnexionActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()){
+                            Toast.makeText(ConnexionActivity.this,"Echec de la connexion veuillez essayer de nouveau",Toast.LENGTH_SHORT).show();
+                        }else{
+                            startActivity(new Intent(ConnexionActivity.this, MainPageActivity.class));
                         }
-                    });
+                    }
+                });
 
-                }else{
-                    Toast.makeText(LoginMainActivity.this,"Error Occured",Toast.LENGTH_SHORT).show();
-                }
+            }else{
+                Toast.makeText(ConnexionActivity.this,"Error Occured",Toast.LENGTH_SHORT).show();
             }
+        });*/
+
+        //CONNEXION
+        btnSignIn = findViewById(R.id.btn_sign_in);
+        btnSignIn.setOnClickListener(v -> {
+
+
+            String email = emailId.getText().toString();
+            String pwd = password.getText().toString();
+
+            if (email.isEmpty()) {
+                emailId.setError("Please enter email id");
+                emailId.requestFocus();
+            } else if (pwd.isEmpty()) {
+                password.setError("Please enter your password");
+                password.requestFocus();
+
+            } else {
+                mFirebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(ConnexionActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (!task.isSuccessful()) {
+
+                            Toast.makeText(ConnexionActivity.this, "Login Error, Please Login Again", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(ConnexionActivity.this, "Connexion réussie", Toast.LENGTH_LONG).show();
+                            Intent intToHome = new Intent(ConnexionActivity.this, MainPageActivity.class);
+                            startActivity(intToHome);
+
+                        }
+
+                    }
+                });
+
+            }
+
         });
 
-        tvSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LoginMainActivity.this,LoginMainIIActivity.class);
-                startActivity(i);
-            }
+
+        tvSignIn.setOnClickListener(v -> {
+            Intent i = new Intent(ConnexionActivity.this, InscriptionActivity.class);
+            startActivity(i);
         });
 
 
@@ -143,12 +170,12 @@ public class LoginMainActivity  extends AppCompatActivity {
         try {
 
             GoogleSignInAccount acc = task.getResult(ApiException.class);
-            Toast.makeText(LoginMainActivity.this,"Vous êtes connéctés",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ConnexionActivity.this,"Vous êtes connecté",Toast.LENGTH_SHORT).show();
             FirebaseGoogleAuth(acc);
 
         }catch (ApiException e){
 
-            Toast.makeText(LoginMainActivity.this,"Echec de la connection",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ConnexionActivity.this,"Echec de la connection",Toast.LENGTH_SHORT).show();
             FirebaseGoogleAuth(null);
 
         }
@@ -161,11 +188,11 @@ public class LoginMainActivity  extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(LoginMainActivity.this,"connéctés",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConnexionActivity.this,"connecté",Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mFirebaseAuth.getCurrentUser();
                     updateUI(user);
                 }else{
-                    Toast.makeText(LoginMainActivity.this,"Echec",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConnexionActivity.this,"Echec",Toast.LENGTH_SHORT).show();
                     updateUI(null);
                 }
             }
