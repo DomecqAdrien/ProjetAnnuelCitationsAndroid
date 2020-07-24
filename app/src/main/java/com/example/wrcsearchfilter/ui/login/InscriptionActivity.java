@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class InscriptionActivity extends AppCompatActivity {
 
     EditText emailId,password;
-    Button btnSignUp;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -50,81 +49,6 @@ public class InscriptionActivity extends AppCompatActivity {
             }
         };
 
-
-        // INSCRIPTION
-        btnSignUp = findViewById(R.id.btn_sign_up);
-        /*btnSignUp.setOnClickListener(v -> {
-
-            String email = emailId.getText().toString();
-            String pwd = password.getText().toString();
-
-            if(email.isEmpty()){
-                emailId.setError("Please enter email id");
-                emailId.requestFocus();
-            }
-            else if (pwd.isEmpty()){
-                password.setError("Please enter a password");
-                password.requestFocus();
-            }
-            else if(pwd.length() < 6){
-                password.setError("The password must be at least 6 characters long");
-            }
-            else {
-                mFirebaseAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(InscriptionActivity.this, task -> {
-                    if (task.isSuccessful()){
-                        startActivity(new Intent(InscriptionActivity.this, MainPageActivity.class));
-                    }else{
-                        Toast.makeText(InscriptionActivity.this,"Echec de la connexion veuillez essayer de nouveau",Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });*/
-
-        //CONNEXION
-        /*btnSignIn = findViewById(R.id.btn_sign_in);
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                String email = emailId.getText().toString();
-                String pwd = password.getText().toString();
-
-                if (email.isEmpty()) {
-                    emailId.setError("Please enter email id");
-                    emailId.requestFocus();
-                } else if (pwd.isEmpty()) {
-                    password.setError("Please enter your password");
-                    password.requestFocus();
-
-                } else if (email.isEmpty() && pwd.isEmpty()) {
-                    Toast.makeText(InscriptionActivity.this, "Veuillez remplir les champs", Toast.LENGTH_SHORT).show();
-
-                } else if (!(email.isEmpty() && pwd.isEmpty())) {
-                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(InscriptionActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            if (!task.isSuccessful()) {
-
-                                Toast.makeText(InscriptionActivity.this, "Login Error, Please Login Again", Toast.LENGTH_SHORT).show();
-
-                            } else {
-
-                                Intent intToHome = new Intent(InscriptionActivity.this, MainPageActivity.class);
-                                startActivity(intToHome);
-
-                            }
-
-                        }
-                    });
-
-                } else {
-                    Toast.makeText(InscriptionActivity.this, "Error Occured", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });*/
     }
 
     public void register(View v){
