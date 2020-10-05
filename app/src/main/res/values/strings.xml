@@ -52,4 +52,5 @@
     <string name="Similar">Catégories:  </string>
     <string name="years_parrution">2004</string>
     <string name="autres_livres_du_m_me_auteur"><u>Autres livres du même auteur</u></string>
+    <string name="server">https://36c9a261c960.eu.ngrok.io</string>
 </resources>
